@@ -281,7 +281,7 @@ class CyclesRenderSettings(bpy.types.PropertyGroup):
         "For denoising the image after rendering, denoising data render passes "
         "also adapt to the selected denoiser",
         items=enum_denoiser,
-        default=2,
+        default=0,
         update=update_render_passes,
     )
     preview_denoiser: EnumProperty(
