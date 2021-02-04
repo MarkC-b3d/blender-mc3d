@@ -238,13 +238,13 @@ class CyclesRenderSettings(bpy.types.PropertyGroup):
         name="Device",
         description="Device to use for rendering",
         items=enum_devices,
-        default='CPU',
+        default='GPU',
     )
     feature_set: EnumProperty(
         name="Feature Set",
         description="Feature set to use for rendering",
         items=enum_feature_set,
-        default='SUPPORTED',
+        default='EXPERIMENTAL',
     )
     shading_system: BoolProperty(
         name="Open Shading Language",
@@ -281,7 +281,7 @@ class CyclesRenderSettings(bpy.types.PropertyGroup):
         "For denoising the image after rendering, denoising data render passes "
         "also adapt to the selected denoiser",
         items=enum_denoiser,
-        default=0,
+        default=2,
         update=update_render_passes,
     )
     preview_denoiser: EnumProperty(
