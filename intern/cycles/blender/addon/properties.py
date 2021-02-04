@@ -267,7 +267,7 @@ class CyclesRenderSettings(bpy.types.PropertyGroup):
     use_denoising: BoolProperty(
         name="Use Denoising",
         description="Denoise the rendered image",
-        default=False,
+        default=True,
     )
     use_preview_denoising: BoolProperty(
         name="Use Viewport Denoising",
@@ -281,7 +281,7 @@ class CyclesRenderSettings(bpy.types.PropertyGroup):
         "For denoising the image after rendering, denoising data render passes "
         "also adapt to the selected denoiser",
         items=enum_denoiser,
-        default=1,
+        default=0,
         update=update_render_passes,
     )
     preview_denoiser: EnumProperty(
@@ -401,7 +401,7 @@ class CyclesRenderSettings(bpy.types.PropertyGroup):
     use_adaptive_sampling: BoolProperty(
         name="Use Adaptive Sampling",
         description="Automatically reduce the number of samples per pixel based on estimated noise level",
-        default=False,
+        default=True,
     )
 
     adaptive_threshold: FloatProperty(
@@ -435,14 +435,14 @@ class CyclesRenderSettings(bpy.types.PropertyGroup):
 
     caustics_reflective: BoolProperty(
         name="Reflective Caustics",
-        description="Use reflective caustics, resulting in a brighter image (more noise but added realism)",
-        default=True,
+        description="Use reflective caustics, resulting in a brighter image (more noise but added realism). Useful for interior rendering.",
+        default=False,
     )
 
     caustics_refractive: BoolProperty(
         name="Refractive Caustics",
-        description="Use refractive caustics, resulting in a brighter image (more noise but added realism)",
-        default=True,
+        description="Use refractive caustics, resulting in a brighter image (more noise but added realism). Useful for interior rendering.",
+        default=False,
     )
 
     blur_glossy: FloatProperty(
@@ -457,26 +457,26 @@ class CyclesRenderSettings(bpy.types.PropertyGroup):
         name="Max Bounces",
         description="Total maximum number of bounces",
         min=0, max=1024,
-        default=12,
+        default=2,
     )
 
     diffuse_bounces: IntProperty(
         name="Diffuse Bounces",
         description="Maximum number of diffuse reflection bounces, bounded by total maximum",
         min=0, max=1024,
-        default=4,
+        default=2,
     )
     glossy_bounces: IntProperty(
         name="Glossy Bounces",
         description="Maximum number of glossy reflection bounces, bounded by total maximum",
         min=0, max=1024,
-        default=4,
+        default=2,
     )
     transmission_bounces: IntProperty(
         name="Transmission Bounces",
         description="Maximum number of transmission bounces, bounded by total maximum",
         min=0, max=1024,
-        default=12,
+        default=2,
     )
     volume_bounces: IntProperty(
         name="Volume Bounces",
@@ -489,14 +489,14 @@ class CyclesRenderSettings(bpy.types.PropertyGroup):
         name="Transparent Max Bounces",
         description="Maximum number of transparent bounces",
         min=0, max=1024,
-        default=8,
+        default=2,
     )
 
     volume_step_rate: FloatProperty(
         name="Step Rate",
         description="Globally adjust detail for volume rendering, on top of automatically estimated step size. "
                     "Higher values reduce render time, lower values render with more detail",
-        default=1.0,
+        default=3.5,
         min=0.01, max=100.0, soft_min=0.1, soft_max=10.0, precision=2
     )
 
@@ -504,7 +504,7 @@ class CyclesRenderSettings(bpy.types.PropertyGroup):
         name="Step Rate",
         description="Globally adjust detail for volume rendering, on top of automatically estimated step size. "
                     "Higher values reduce render time, lower values render with more detail",
-        default=1.0,
+        default=3.5,
         min=0.01, max=100.0, soft_min=0.1, soft_max=10.0, precision=2
     )
 
@@ -627,7 +627,7 @@ class CyclesRenderSettings(bpy.types.PropertyGroup):
         "higher values will be scaled down to avoid too "
         "much noise and slow convergence at the cost of accuracy",
         min=0.0, max=1e8,
-        default=10.0,
+        default=0.0,
     )
 
     debug_tile_size: IntProperty(
@@ -731,7 +731,7 @@ class CyclesRenderSettings(bpy.types.PropertyGroup):
     use_camera_cull: BoolProperty(
         name="Use Camera Cull",
         description="Allow objects to be culled based on the camera frustum",
-        default=False,
+        default=True,
     )
 
     camera_cull_margin: FloatProperty(
