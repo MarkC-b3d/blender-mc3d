@@ -2,6 +2,13 @@
 .. Keep this document short & concise,
    linking to external resources instead of including content in-line.
    See 'release/text/readme.html' for the end user read-me.
+Optix Optimised Branch
+=======
+You've found my branch of blender where I optimise and cater to Optix, just for fun. 
+
+Just as a catch all disclaimer this probably shouldn't be used in a production environment.
+
+![Imgur Image](https://i.imgur.com/q1S0eBL.png)
 
 
 Blender
